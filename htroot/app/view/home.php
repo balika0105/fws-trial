@@ -18,18 +18,15 @@
             <div class="col-xs-12 col-4">
                 <div class="form-group">
                     <label for="csvupload">CSV Fájl feltöltése</label>
-                    <input class="form-control" type="file" name="csvupload" id="csvupload">
-                    <button class="form-control btn btn-primary">Feltöltés</button>
+                    <input class="form-control" type="file" name="csvupload" id="csvupload"> <br>
+                    <button id="csvuploadbtn" class="form-control btn btn-primary" onclick ="csvprocess()">Feltöltés</button>
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-xs-12 col-4">
                 <label for="xmldownload">XML Fájl letöltése</label>
                 <button id="xmldownload" class="form-control btn btn-secondary">Letöltés</button>
             </div>
         </div>
-        
-        
     </div>
 </div>
+<script type="text/javascript" src="/public/res/script/csvupload.js"></script>

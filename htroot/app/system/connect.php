@@ -1,6 +1,6 @@
 <?php
     //Testing
-    $conn = new mysqli("postpad-db", "root", "root", "postpad", "3306");
+    $conn = new mysqli("fws-solution-db", "root", "root", "postpad", "3306");
     
     //Prod
     //
