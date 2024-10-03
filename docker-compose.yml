@@ -1,0 +1,20 @@
+services:
+  fw-solution:
+    container_name: 'fws-solution'
+    image: 'webserver:v2'
+    ports:
+      - "8880:80"
+    volumes:
+      - './htroot:/var/www/html'
+      - './php.ini:/usr/local/etc/php/php.ini'
+    restart: always
+  fws-solution-db:
+    container_name: 'fws-solution-db'
+    image: 'mariadb'
+    ports:
+      - '3316:3306'
+    volumes:
+      - './data:/var/lib/mysql'
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+    restart: always
