@@ -56,5 +56,44 @@
                 echo "fileuploadfail";
             }
         }
+
+        public function xmldownload(){
+            //XML Dokumentum előkészítése
+            $xml = new DOMDocument("1.0");
+            $xml->formatOutput = true;
+            $root = $xml->createElement("products");
+            $xml->appendChild($root);
+
+            //Csatlakozás az adatbázishoz
+            include "app/system/connect.php";
+
+            $getallentries = $conn->query("SELECT * FROM products WHERE id > 0");
+            $result = $getallentries->fetch_assoc();
+
+            foreach($result as $row){
+                $product = $xml->createElement('product');
+                foreach($row as $key => $value){
+                    if(preg_match('/^cat[1-9]\d*$/', $key)){
+                        $categories = $xml->createElement("categories");
+                        foreach($key => $value){
+                            $category = $xml->createElement("category", htmlspecialchars($value));
+                            $categories->appendChild($category);
+                        }
+
+                        $product->appendChild($categories)
+                    }
+                    else{
+                        $child = $xml->createElement($key, htmlspecialchars($value));
+                        $product->appendChild($child);
+                    }
+                }
+
+                $root->appendChild($product);
+            }
+
+            echo "'Products' XML Output:\n";
+            echo $doc->saveXML() . "\n";
+
+        }
     }
 ?>

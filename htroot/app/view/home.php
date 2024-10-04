@@ -23,8 +23,15 @@
                 </div>
             </div>
             <div class="col-xs-12 col-4">
-                <label for="xmldownload">XML Fájl letöltése</label>
-                <button id="xmldownload" class="form-control btn btn-secondary">Letöltés</button>
+                <label for="xmldownloadbtn">XML Fájl letöltése</label>
+                <small>
+                    <p>
+                        <i>
+                            Figyelem! Az XML fájl összeállítása adatbázis méretől függően akár PERCEKIG is tarthat!
+                        </i>
+                    </p>
+                </small>
+                <button id="xmldownloadbtn" class="form-control btn btn-secondary" onclick="xmldownload()">Letöltés</button>
             </div>
         </div>
     </div>

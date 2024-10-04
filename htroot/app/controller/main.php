@@ -13,6 +13,13 @@
                     $model = new csvnxml();
                     $model->csvupload();
                     break;
+
+                case "xmldownload":
+                    $this->model("csvnxml");
+                    $model = new csvnxml();
+                    $model->xmldownload();
+                    break;
+                    break;
             }
         }
     }

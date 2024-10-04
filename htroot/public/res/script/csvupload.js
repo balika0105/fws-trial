@@ -46,3 +46,44 @@ function csvprocess(){
         alert("Nincs mit feltölteni!");
     }
 }
+
+function xmldownload(){
+    const downloadBtnText = "Letöltés";
+    const downloadBtnDisabledText = "Feldolgozás folyamatban...";
+    var xmldownloadbtn = document.getElementById("xmldownloadbtn");
+
+    xmldownloadbtn.innerHTML = downloadBtnDisabledText;
+    xmldownloadbtn.classList.add("disabled");
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            switch(this.responseText){
+                case "ok":
+                    xmldownloadbtn.classList.remove("btn-secondary");
+                    xmldownloadbtn.classList.add("btn-success");
+                    xmldownloadbtn.innerHTML = "Feldolgozás sikeres!";
+
+                    setTimeout(function(){
+                        xmldownloadbtn.classList.add("btn-secondary");
+                        xmldownloadbtn.classList.remove("btn-success");
+                        xmldownloadbtn.innerHTML = downloadBtnText;
+                        xmldownloadbtn.classList.remove("disabled");
+                    }, 1000);
+                    
+                    break;
+                default:
+                    console.log(this.responseText);
+                    xmldownloadbtn.innerHTML = downloadBtnText;
+                    xmldownloadbtn.classList.remove("disabled");
+                    alert("Hiba történt a feldolgozásban!");
+                    break;
+            }   
+        }
+    };
+    var params = "action=xmldownload";
+    xhr.open("POST", "/main/processor", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(params);
+}
