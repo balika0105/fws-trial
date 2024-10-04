@@ -78,7 +78,7 @@
                         continue;
                     }
                     else if(preg_match('/^cat[1-9]\d*$/', $key)){
-                        if($value !== ""){
+                        if($value != ""){
                             $category = $xml->createElement("category", htmlspecialchars($value));
                             $categories->appendChild($category);
                             
