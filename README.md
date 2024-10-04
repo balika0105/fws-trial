@@ -14,3 +14,6 @@ Az adatbázis megoldáshoz tekintsék meg a `Database.sql` fájlt.
 
 A 2. feladat megoldását, egy MySQL lekérdezést a `probafeladat-solution.sql` fájlban,
 illetve a projekt kezdőlapjának alján.
+
+### Utóirat
+Félreértés ne essék, tisztában vagyok a branch-ek, az issue-k és a pull requestek használatával, csak ehhez nem akartam használni.
