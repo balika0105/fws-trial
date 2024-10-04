@@ -59,7 +59,7 @@
 
         public function xmldownload(){
             //XML Dokumentum előkészítése
-            $xml = new DOMDocument("1.0");
+            $xml = new DOMDocument("1.0", "UTF-8");
             $xml->formatOutput = true;
             $root = $xml->createElement("products");
             $xml->appendChild($root);
@@ -68,19 +68,22 @@
             include "app/system/connect.php";
 
             $getallentries = $conn->query("SELECT * FROM products WHERE id > 0");
-            $result = $getallentries->fetch_assoc();
-
-            foreach($result as $row){
+            while($row = $getallentries->fetch_assoc()){
+                //print_r($row);
                 $product = $xml->createElement('product');
+                $categories = $xml->createElement("categories");
+
                 foreach($row as $key => $value){
-                    if(preg_match('/^cat[1-9]\d*$/', $key)){
-                        $categories = $xml->createElement("categories");
-                        foreach($key => $value){
+                    if($key == "id"){
+                        continue;
+                    }
+                    else if(preg_match('/^cat[1-9]\d*$/', $key)){
+                        if($value !== ""){
                             $category = $xml->createElement("category", htmlspecialchars($value));
                             $categories->appendChild($category);
+                            
                         }
-
-                        $product->appendChild($categories)
+                        $product->appendChild($categories);
                     }
                     else{
                         $child = $xml->createElement($key, htmlspecialchars($value));
@@ -91,9 +94,15 @@
                 $root->appendChild($product);
             }
 
-            echo "'Products' XML Output:\n";
-            echo $doc->saveXML() . "\n";
+            //Random név generálása
+            $currentTime = date('Y-m-d_H-i-s');
+            $randomNum = rand(1, 1000);
+            $targetPath = SITE_ROOT . "/public/tmp/export_" . $currentTime . "_". $randomNum . ".xml";
 
+            $xml->save($targetPath);
+            
+            //Fájl útvonal küldése
+            echo "targetpath: " . str_replace(SITE_ROOT, "", $targetPath);
         }
     }
 ?>

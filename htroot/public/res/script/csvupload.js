@@ -59,27 +59,26 @@ function xmldownload(){
 
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            switch(this.responseText){
-                case "ok":
-                    xmldownloadbtn.classList.remove("btn-secondary");
-                    xmldownloadbtn.classList.add("btn-success");
-                    xmldownloadbtn.innerHTML = "Feldolgozás sikeres!";
+            if(this.responseText.startsWith("targetpath: ")){
+                var split = this.responseText.split(" ");
+                window.open(split[1], "_blank");
+                xmldownloadbtn.classList.remove("btn-secondary");
+                xmldownloadbtn.classList.add("btn-success");
+                xmldownloadbtn.innerHTML = "Feldolgozás sikeres!";
 
-                    setTimeout(function(){
-                        xmldownloadbtn.classList.add("btn-secondary");
-                        xmldownloadbtn.classList.remove("btn-success");
-                        xmldownloadbtn.innerHTML = downloadBtnText;
-                        xmldownloadbtn.classList.remove("disabled");
-                    }, 1000);
-                    
-                    break;
-                default:
-                    console.log(this.responseText);
+                setTimeout(function(){
+                    xmldownloadbtn.classList.add("btn-secondary");
+                    xmldownloadbtn.classList.remove("btn-success");
                     xmldownloadbtn.innerHTML = downloadBtnText;
                     xmldownloadbtn.classList.remove("disabled");
-                    alert("Hiba történt a feldolgozásban!");
-                    break;
-            }   
+                }, 1000);
+            }
+            else{
+                console.log(this.responseText);
+                xmldownloadbtn.innerHTML = downloadBtnText;
+                xmldownloadbtn.classList.remove("disabled");
+                alert("Hiba történt a feldolgozásban!");
+            }  
         }
     };
     var params = "action=xmldownload";
