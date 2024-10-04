@@ -36,4 +36,19 @@
         </div>
     </div>
 </div>
+<hr>
+<div class="row">
+    <div class="col-12">
+        <h3>2. Feladat</h3>
+        <p>A második feladat megoldása egy MySQL lekérdezés, ami a következő:</p>
+        <p>
+            <code>
+            SELECT SUM(sub.price) AS package_sum FROM( SELECT `price_history`.`price` FROM price_history INNER JOIN `product_package_contents` ON `price_history`.`product_id` = `product_package_contents`.`product_id` WHERE `product_package_contents`.`product_package_id` = 2264 GROUP BY `product_package_contents`.`product_id` ORDER BY ABS(DATEDIFF (`price_history`.`updated_at`, 2023-12-01)) ASC) AS sub;
+            </code>
+        </p>
+        <p>
+            A megoldásban válaszott termékcsomag száma <code>2264</code>, a választott dátum <code>2023-12-01</code>.
+        </p>
+    </div>
+</div>
 <script type="text/javascript" src="/public/res/script/csvupload.js"></script>

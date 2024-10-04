@@ -9,3 +9,8 @@ Ezen felül a megvalósításhoz felhasználtam egy keretrendszert, amit a sajá
 ### Adatbázis
 
 Az adatbázis megoldáshoz tekintsék meg a `Database.sql` fájlt.
+
+### 2. Feladat megoldása: SQL Lekérdezés
+
+A 2. feladat megoldását, egy MySQL lekérdezést a `probafeladat-solution.sql` fájlban,
+illetve a projekt kezdőlapjának alján.
