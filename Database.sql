@@ -1,9 +1,9 @@
 -- CREATE SCHEMA `fwsteszt` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 -- USE `fwsteszt`;
 
-CREATE TABLE `termekek` (
+CREATE TABLE `products` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(50) NOT NULL,
+  `title` VARCHAR(50) NOT NULL UNIQUE,
   `price` INT(10) NOT NULL,
   `cat1` VARCHAR(50) NULL DEFAULT NULL,
   `cat2` VARCHAR(50) NULL DEFAULT NULL,
